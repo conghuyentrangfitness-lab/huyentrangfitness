@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
 
 const NAV_LINKS = [
@@ -44,11 +45,20 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between gap-6">
-          {/* Brand Logo */}
+          {/* Brand Logo with Image */}
           <Link
             href="#"
-            className="group flex flex-col tracking-wide transition-transform duration-300 shrink-0 mr-4 xl:mr-10"
+            className="group flex items-center gap-2.5 sm:gap-3 tracking-wide transition-transform duration-300 shrink-0 mr-4 xl:mr-8 hover:scale-[1.01]"
           >
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#D4A373]/35 shadow-xs shrink-0 bg-white">
+              <Image
+                src="/images/logo.jpg"
+                alt="FITNESS x FIT CLUB Logo"
+                fill
+                sizes="40px"
+                className="object-cover object-center"
+              />
+            </div>
             <span className="text-xl sm:text-2xl text-[#24211D] tracking-tight font-bold flex items-center gap-1.5 whitespace-nowrap">
               FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C58F78] ml-0.5" />
@@ -100,9 +110,19 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-2 text-xs tracking-[0.2em] text-[#C58F78] uppercase font-bold whitespace-nowrap">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span>FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span></span>
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D4A373]/35 shadow-xs shrink-0 bg-white">
+              <Image
+                src="/images/logo.jpg"
+                alt="FITNESS x FIT CLUB Logo"
+                fill
+                sizes="32px"
+                className="object-cover object-center"
+              />
+            </div>
+            <span className="text-base font-bold text-[#24211D] tracking-tight whitespace-nowrap">
+              FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>
+            </span>
           </div>
           {NAV_LINKS.map((item, index) => (
             <a

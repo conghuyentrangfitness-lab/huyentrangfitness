@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Heart, Flower2, ShieldCheck } from "lucide-react";
 import PolicyModal, { PolicyTab } from "./PolicyModal";
 
@@ -24,12 +25,23 @@ export default function FooterSection() {
         {/* Top Brand & Back to top Row */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between pb-14 border-b border-white/10 gap-8">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-sans-clean text-[#D4A373] tracking-widest uppercase mb-2 whitespace-nowrap">
+            <div className="inline-flex items-center gap-2 text-xs font-sans-clean text-[#D4A373] tracking-widest uppercase mb-3 whitespace-nowrap">
               <Flower2 className="w-3.5 h-3.5" />
               <span>FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span></span>
             </div>
-            <div className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-white font-medium whitespace-nowrap">
-              FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span><span className="text-[#C58F78]">.</span>
+            <div className="flex items-center gap-3 sm:gap-4 font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-white font-medium whitespace-nowrap">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-[#D4A373]/40 shadow-sm shrink-0 bg-white">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="FITNESS x FIT CLUB Logo"
+                  fill
+                  sizes="48px"
+                  className="object-cover object-center"
+                />
+              </div>
+              <span>
+                FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span><span className="text-[#C58F78]">.</span>
+              </span>
             </div>
             <p className="font-sans-clean text-xs sm:text-sm text-[#A89F91] mt-2 font-light max-w-md">
               Hệ thống rèn luyện vóc dáng chuyên biệt cho phái đẹp: tăng cơ, giảm mỡ, độ body, thắt eo con kiến, nâng đỉnh mông quả đào.
