@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FAF7F2;
+    --bg-secondary: #F3ECE2;
+    --bg-surface: #FFFFFF;
+    --bg-card: #FAF8F5;
+    --bg-dark: #1C1A17;
+    --text-primary: #24211D;
+    --text-secondary: #59534B;
+    --text-muted: #877F75;
+    --text-light: #FBF9F5;
+    --border-subtle: rgba(197, 143, 120, 0.2);
+    --border-warm: rgba(89, 83, 75, 0.12);
+    --accent-gold: #D4A373;
+    --accent-rose: #C58F78;
+    --accent-blush: #EEDCD3;
+    --accent-sage: #8A9A78;
+    --font-google-sans: var(--font-google-sans), "Google Sans", "Google Sans Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html,
+  body {
+    background-color: #FAF7F2;
+    color: #24211D;
+    font-family: var(--font-google-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: var(--font-google-sans);
+  }
+
+  ::selection {
+    background-color: #E8D4C8;
+    color: #1C1A17;
+  }
+}
+
+/* Custom soft minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8CCC0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C58F78;
+}
+
+/* Typography helper classes all pointing to Google Sans */
+.font-serif-luxury,
+.font-sans-clean,
+.font-display,
+.font-condensed {
+  font-family: var(--font-google-sans) !important;
+}
+
+/* Mindful Breathing Ring Animation */
+@keyframes breatheScale {
+  0%, 100% {
+    transform: scale(0.92);
+    opacity: 0.6;
+    box-shadow: 0 0 30px rgba(212, 163, 115, 0.2);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.95;
+    box-shadow: 0 0 60px rgba(197, 143, 120, 0.45);
+  }
+}
+
+.animate-breathe {
+  animation: breatheScale 8s ease-in-out infinite;
+}
+
+/* Soft Glow Cards */
+.card-soft-glow {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 163, 115, 0.22);
+  box-shadow: 0 15px 40px -10px rgba(135, 127, 117, 0.08);
+}
+
+.card-soft-glow:hover {
+  border-color: rgba(197, 143, 120, 0.45);
+  box-shadow: 0 20px 50px -10px rgba(197, 143, 120, 0.16);
+}
+
+/* Custom cursor styling for feminine experience */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
