@@ -93,7 +93,15 @@ function buildHtmlTemplate(data: ConsultationPayload, timestamp: string) {
   `;
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const acceptHeader = req.headers.get("accept") || "";
+
+  // Nếu người dùng mở đường dẫn này bằng trình duyệt web thông thường, tự động chuyển về trang chủ website
+  if (acceptHeader.includes("text/html") && !url.searchParams.has("diag")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const recipient = RECIPIENT_EMAIL;
