@@ -93,6 +93,53 @@ function buildHtmlTemplate(data: ConsultationPayload, timestamp: string) {
   `;
 }
 
+export async function GET() {
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const recipient = RECIPIENT_EMAIL;
+
+  let smtpVerified = false;
+  let smtpDetail = "Chưa cấu hình biến môi trường SMTP_USER và SMTP_PASS trên Vercel";
+
+  if (smtpUser && smtpPass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: smtpUser,
+          pass: smtpPass.replace(/\s+/g, ""),
+        },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
+      });
+
+      await transporter.verify();
+      smtpVerified = true;
+      smtpDetail = "Kết nối Gmail SMTP thành công!";
+    } catch (err: unknown) {
+      smtpDetail = `Lỗi kết nối SMTP: ${err instanceof Error ? err.message : String(err)}`;
+    }
+  }
+
+  return NextResponse.json({
+    recipient,
+    smtp: {
+      has_user: Boolean(smtpUser),
+      has_pass: Boolean(smtpPass),
+      verified: smtpVerified,
+      detail: smtpDetail,
+    },
+    google_script_configured: Boolean(process.env.GOOGLE_SCRIPT_URL),
+    resend_configured: Boolean(process.env.RESEND_API_KEY),
+    help: !smtpUser || !smtpPass
+      ? "Để nhận thư 100% qua Gmail SMTP chính thức, hãy vào Vercel Dashboard -> Project huyentrangfitness -> Settings -> Environment Variables, thêm SMTP_USER=conghuyentrangfitness@gmail.com và SMTP_PASS (16 chữ cái), sau đó Redeploy."
+      : "Hệ thống SMTP đã cấu hình.",
+  });
+}
+
 export async function POST(req: Request) {
   try {
     const body: ConsultationPayload = await req.json();
@@ -119,7 +166,7 @@ export async function POST(req: Request) {
 
     const emailSubject = `[ĐĂNG KÝ HỌC] ${fullName} - ${phone} (${packageName})`;
 
-    // Check if SMTP is configured
+    // Ưu tiên 1: SMTP Gmail (Gửi trực tiếp bằng tài khoản Google)
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
 
@@ -132,13 +179,21 @@ export async function POST(req: Request) {
                 port: Number(process.env.SMTP_PORT) || 465,
                 secure: Number(process.env.SMTP_PORT) === 465 || !process.env.SMTP_PORT,
                 auth: { user: smtpUser, pass: smtpPass },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 15000,
               }
             : {
-                service: "gmail",
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
                 auth: {
                   user: smtpUser,
-                  pass: smtpPass.replace(/\s+/g, ""), // Tự động loại bỏ dấu cách nếu copy từ Google
+                  pass: smtpPass.replace(/\s+/g, ""), // Tự động loại bỏ dấu cách
                 },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 15000,
               }
         );
 
@@ -161,7 +216,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Ưu tiên 2: Google Apps Script Webhook (Không cần mật khẩu, gửi mail trực tiếp từ Google & lưu vào Google Sheet)
+    // Ưu tiên 2: Google Apps Script Webhook (Nếu có)
     const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
     if (googleScriptUrl) {
       try {
@@ -191,7 +246,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Ưu tiên 3: Resend API (Dịch vụ gửi mail chuẩn Next.js)
+    // Ưu tiên 3: Resend API (Nếu có)
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey) {
       try {
@@ -222,7 +277,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Xác định địa chỉ website chính thức
+    // Ưu tiên 4: Fallback FormSubmit service trực tiếp tới RECIPIENT_EMAIL
     const hostHeader = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
     const protoHeader = req.headers.get("x-forwarded-proto") || "https";
     const detectedOrigin = req.headers.get("origin") || (hostHeader ? `${protoHeader}://${hostHeader}` : "");
@@ -232,7 +287,6 @@ export async function POST(req: Request) {
       process.env.SITE_URL ||
       (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://www.conghuyentrangfitness.com");
 
-    // Fallback: Send via FormSubmit service directly to RECIPIENT_EMAIL
     try {
       const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(RECIPIENT_EMAIL)}`, {
         method: "POST",
@@ -273,12 +327,15 @@ export async function POST(req: Request) {
       console.error("Lỗi khi gửi qua FormSubmit:", fsErr);
     }
 
-    // Even if remote mail service failed, return success with notice so UI doesn't crash
-    return NextResponse.json({
-      success: true,
-      mode: "queued",
-      message: `Đã ghi nhận thông tin đăng ký của ${fullName}`,
-    });
+    // Nếu tất cả các kênh gửi thư đều chưa hoạt động (do máy chủ Vercel chưa cấu hình SMTP và FormSubmit chưa bấm kích hoạt)
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          "Chưa thể gửi email tự động do máy chủ Vercel chưa có cấu hình SMTP hoặc FormSubmit chưa kích hoạt. Vui lòng bấm nhắn tin Zalo (0913.234.323) hoặc liên hệ Hotline để được xếp lịch ngay!",
+      },
+      { status: 503 }
+    );
   } catch (err: unknown) {
     console.error("Lỗi trong quá trình xử lý đăng ký:", err);
     return NextResponse.json(

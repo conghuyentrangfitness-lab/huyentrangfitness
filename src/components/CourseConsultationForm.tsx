@@ -322,9 +322,24 @@ export default function CourseConsultationForm({
             {/* Right: The Actual Interactive Form */}
             <div className="lg:col-span-7 bg-[#FAF7F2]/80 backdrop-blur-xs rounded-2xl p-6 sm:p-9 border border-[#D4A373]/30">
               {submitError && (
-                <div className="mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-sans-clean flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
-                  <span>{submitError}</span>
+                <div className="mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-sans-clean space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
+                    <span>{submitError}</span>
+                  </div>
+                  <div className="pt-1 flex flex-wrap gap-2">
+                    <a
+                      href={`https://zalo.me/0913234323?text=${encodeURIComponent(
+                        `Chào HLV Huyền Trang, tôi là ${fullName || "học viên"} (${phone || ""}), muốn đăng ký tư vấn ${currentPkgLabel} tại ${location || ""}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0068FF] hover:bg-[#0054CC] text-white text-xs font-semibold shadow-xs"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>Nhắn tin Zalo trực tiếp HLV (0913.234.323)</span>
+                    </a>
+                  </div>
                 </div>
               )}
 
