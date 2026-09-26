@@ -204,14 +204,6 @@ export default function CourseConsultationForm({
             {/* Direct Connect Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-3 w-full mb-8">
               <a
-                href={mailtoFallbackUrl}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1C1A17] hover:bg-[#2E2924] text-white text-xs font-semibold font-sans-clean transition-all shadow-sm"
-              >
-                <Mail className="w-3.5 h-3.5 text-[#D4A373]" />
-                <span>Gửi thư qua Email cá nhân</span>
-              </a>
-
-              <a
                 href="https://zalo.me/0913234323"
                 target="_blank"
                 rel="noopener noreferrer"
