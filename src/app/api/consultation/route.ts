@@ -157,7 +157,68 @@ export async function POST(req: Request) {
           message: `Thông tin đăng ký đã được gửi thành công đến hòm thư ${RECIPIENT_EMAIL}`,
         });
       } catch (smtpErr) {
-        console.error("Lỗi khi gửi mail qua SMTP, thử fallback FormSubmit:", smtpErr);
+        console.error("Lỗi khi gửi mail qua SMTP:", smtpErr);
+      }
+    }
+
+    // Ưu tiên 2: Google Apps Script Webhook (Không cần mật khẩu, gửi mail trực tiếp từ Google & lưu vào Google Sheet)
+    const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
+    if (googleScriptUrl) {
+      try {
+        const gsRes = await fetch(googleScriptUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName,
+            phone,
+            email: email || "Không có",
+            location,
+            packageName,
+            notes: notes || "Không có",
+            timestamp,
+          }),
+        });
+
+        if (gsRes.ok) {
+          return NextResponse.json({
+            success: true,
+            mode: "google_script",
+            message: `Thông tin đăng ký đã được gửi thành công đến hòm thư ${RECIPIENT_EMAIL}`,
+          });
+        }
+      } catch (gsErr) {
+        console.error("Lỗi Google Script Webhook:", gsErr);
+      }
+    }
+
+    // Ưu tiên 3: Resend API (Dịch vụ gửi mail chuẩn Next.js)
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      try {
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: "FITNESS x FIT CLUB <onboarding@resend.dev>",
+            to: [RECIPIENT_EMAIL],
+            reply_to: email || undefined,
+            subject: emailSubject,
+            html: buildHtmlTemplate(body, timestamp),
+          }),
+        });
+
+        if (resendRes.ok) {
+          return NextResponse.json({
+            success: true,
+            mode: "resend",
+            message: `Thông tin đăng ký đã được gửi thành công đến hòm thư ${RECIPIENT_EMAIL}`,
+          });
+        }
+      } catch (resendErr) {
+        console.error("Lỗi Resend:", resendErr);
       }
     }
 
@@ -169,7 +230,7 @@ export async function POST(req: Request) {
     const officialSiteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       process.env.SITE_URL ||
-      (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://conghuyentrangfitness.com");
+      (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://www.conghuyentrangfitness.com");
 
     // Fallback: Send via FormSubmit service directly to RECIPIENT_EMAIL
     try {
