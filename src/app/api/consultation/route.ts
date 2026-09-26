@@ -125,15 +125,22 @@ export async function POST(req: Request) {
 
     if (smtpUser && smtpPass) {
       try {
-        const transporter = nodemailer.createTransport({
-          host: process.env.SMTP_HOST || "smtp.gmail.com",
-          port: Number(process.env.SMTP_PORT) || 465,
-          secure: Number(process.env.SMTP_PORT) === 465 || !process.env.SMTP_PORT,
-          auth: {
-            user: smtpUser,
-            pass: smtpPass,
-          },
-        });
+        const transporter = nodemailer.createTransport(
+          process.env.SMTP_HOST && process.env.SMTP_HOST !== "smtp.gmail.com"
+            ? {
+                host: process.env.SMTP_HOST,
+                port: Number(process.env.SMTP_PORT) || 465,
+                secure: Number(process.env.SMTP_PORT) === 465 || !process.env.SMTP_PORT,
+                auth: { user: smtpUser, pass: smtpPass },
+              }
+            : {
+                service: "gmail",
+                auth: {
+                  user: smtpUser,
+                  pass: smtpPass.replace(/\s+/g, ""), // Tự động loại bỏ dấu cách nếu copy từ Google
+                },
+              }
+        );
 
         await transporter.sendMail({
           from: `"FITNESS x FIT CLUB" <${smtpUser}>`,
