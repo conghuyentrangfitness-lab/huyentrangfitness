@@ -161,6 +161,16 @@ export async function POST(req: Request) {
       }
     }
 
+    // Xác định địa chỉ website chính thức
+    const hostHeader = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
+    const protoHeader = req.headers.get("x-forwarded-proto") || "https";
+    const detectedOrigin = req.headers.get("origin") || (hostHeader ? `${protoHeader}://${hostHeader}` : "");
+
+    const officialSiteUrl =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      process.env.SITE_URL ||
+      (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://huyentrangfitness.com");
+
     // Fallback: Send via FormSubmit service directly to RECIPIENT_EMAIL
     try {
       const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(RECIPIENT_EMAIL)}`, {
@@ -169,8 +179,8 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
           Accept: "application/json",
           "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-          Origin: "http://localhost:3000",
-          Referer: "http://localhost:3000/",
+          Origin: officialSiteUrl,
+          Referer: `${officialSiteUrl}/`,
         },
         body: JSON.stringify({
           _subject: `[ĐĂNG KÝ HỌC MỚI] ${fullName} - ${phone}`,
@@ -183,6 +193,7 @@ export async function POST(req: Request) {
           "Khu vực đang sinh sống": location,
           "Gói học bạn quan tâm": packageName,
           "Mục tiêu hoặc thời gian tiện nghe điện thoại": notes || "Không có ghi chú thêm",
+          "Nguồn tiếp nhận": "Website chính thức FITNESS x FIT CLUB",
           "Thời gian gửi đăng ký": timestamp,
         }),
       });
