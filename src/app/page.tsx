@@ -25,10 +25,13 @@ export default function HomePage() {
       {/* 01. Hero Section: Kháng Lực Trên Thảm */}
       <HeroSection />
 
-      {/* Album Hình Ảnh Hoạt Động & Lớp Học Thực Tế */}
+      {/* 02. Đội Ngũ Master Kháng Lực Thảm (Co-Founder & Master Trainer Công Huyền Trang) */}
+      <TrainersSection />
+
+      {/* 03. Album Khoảnh Khắc Tập Luyện & Thư Viện Lớp Học Thực Tế */}
       <GalleryAlbumSection />
 
-      {/* 02. Bộ Dụng Cụ Kháng Lực Trên Thảm (Thảm tập chuyên dụng, Dây Booty-Bands, Tạ tay 1-2kg) */}
+      {/* 04. Bộ Dụng Cụ Kháng Lực Trên Thảm (Thảm tập chuyên dụng, Dây Booty-Bands, Tạ tay 1-2kg) */}
       <MatEquipmentSection />
 
       {/* 05. Đo Lường Hiệu Quả Kháng Lực Trên Thảm */}
@@ -37,10 +40,7 @@ export default function HomePage() {
       {/* 06. Cấu Trúc 60 Phút Của Buổi Tập Kháng Lực Trên Thảm */}
       <MachineSection />
 
-      {/* 07. Master Trainers: Huyen Trang, Mai Anh, Linh Dan */}
-      <TrainersSection />
-
-      {/* 08. Transformation: Before / After Posture Alignment */}
+      {/* 07. Transformation: Before / After Posture Alignment */}
       <TransformationSection />
 
       {/* 09. Sanctuary Wellness Lab: Vitals & Deep Sleep */}

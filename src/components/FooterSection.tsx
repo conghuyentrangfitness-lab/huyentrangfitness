@@ -121,6 +121,11 @@ export default function FooterSection() {
             </span>
             <ul className="space-y-2.5 text-[#C4B9AA]">
               <li>
+                <a href="#trainers" className="hover:text-white transition-colors">
+                  Master Huấn Luyện Viên
+                </a>
+              </li>
+              <li>
                 <a href="#album" className="hover:text-white transition-colors font-semibold text-[#D4A373]">
                   Thư Viện Ảnh Lớp Học (24+ Ảnh)
                 </a>
@@ -128,11 +133,6 @@ export default function FooterSection() {
               <li>
                 <a href="#equipment" className="hover:text-white transition-colors">
                   Dụng Cụ Thảm & Dây Band
-                </a>
-              </li>
-              <li>
-                <a href="#trainers" className="hover:text-white transition-colors">
-                  Master Huấn Luyện Viên
                 </a>
               </li>
               <li>
