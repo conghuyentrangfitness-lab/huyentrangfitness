@@ -99,9 +99,9 @@ export async function POST(req: Request) {
     const { fullName, phone, email, location, packageName, notes } = body;
 
     // Validation
-    if (!fullName?.trim() || !phone?.trim() || !location?.trim()) {
+    if (!fullName?.trim() || !phone?.trim() || !email?.trim() || !location?.trim()) {
       return NextResponse.json(
-        { success: false, error: "Vui lòng điền đầy đủ các thông tin bắt buộc (Họ tên, Số điện thoại, Khu vực)." },
+        { success: false, error: "Vui lòng điền đầy đủ các thông tin bắt buộc (Họ tên, Số điện thoại, Email học viên, Khu vực)." },
         { status: 400 }
       );
     }

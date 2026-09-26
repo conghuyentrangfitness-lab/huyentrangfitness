@@ -74,8 +74,10 @@ export default function CourseConsultationForm({
       }
     }
 
-    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      newErrors.email = "Email không hợp lệ (ví dụ: ban@gmail.com)";
+    if (!email.trim()) {
+      newErrors.email = "Vui lòng nhập địa chỉ email của học viên";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = "Email không đúng định dạng (ví dụ: nguyenthutrang@gmail.com)";
     }
 
     if (!location.trim()) {
@@ -413,11 +415,10 @@ export default function CourseConsultationForm({
                   )}
                 </div>
 
-                {/* Field 3: Địa chỉ Email (Tùy chọn - Nhận xác nhận & lịch học) */}
+                {/* Field 3: Email học viên (Bắt buộc) */}
                 <div>
                   <label className="block font-sans-clean text-xs font-bold text-[#24211D] mb-1.5 uppercase tracking-wide">
-                    Địa chỉ Email của bạn{" "}
-                    <span className="text-[#877F75] font-normal lowercase">(nhận phản hồi qua thư)</span>
+                    Email học viên <span className="text-red-500 font-bold">*</span>
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#877F75]">
@@ -430,7 +431,7 @@ export default function CourseConsultationForm({
                         setEmail(e.target.value);
                         if (errors.email) setErrors({ ...errors, email: undefined });
                       }}
-                      placeholder="Ví dụ: thutrang@gmail.com"
+                      placeholder="Ví dụ: nguyenthutrang@gmail.com"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white border text-xs sm:text-sm font-sans-clean text-[#24211D] placeholder:text-[#A89F91] focus:outline-none transition-all ${
                         errors.email
                           ? "border-red-400 ring-2 ring-red-100"
