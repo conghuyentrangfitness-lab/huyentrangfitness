@@ -168,6 +168,7 @@ export async function POST(req: Request) {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
           Origin: "http://localhost:3000",
           Referer: "http://localhost:3000/",
         },
@@ -187,13 +188,15 @@ export async function POST(req: Request) {
       });
 
       const result = await formSubmitRes.json();
+      console.log("FormSubmit API Result:", result);
 
-      return NextResponse.json({
-        success: true,
-        mode: "formsubmit",
-        formSubmitResult: result,
-        message: `Thông tin đăng ký đã được gửi đến email ${RECIPIENT_EMAIL}`,
-      });
+      if (result.success === "true" || result.success === true) {
+        return NextResponse.json({
+          success: true,
+          mode: "formsubmit",
+          message: `Thông tin đăng ký đã được gửi đến email ${RECIPIENT_EMAIL}`,
+        });
+      }
     } catch (fsErr) {
       console.error("Lỗi khi gửi qua FormSubmit:", fsErr);
     }
