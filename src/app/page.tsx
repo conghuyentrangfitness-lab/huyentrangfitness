@@ -1,6 +1,7 @@
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import GalleryAlbumSection from "@/components/GalleryAlbumSection";
 import MatEquipmentSection from "@/components/MatEquipmentSection";
 import BodyScanSection from "@/components/BodyScanSection";
 import MachineSection from "@/components/MachineSection";
@@ -23,6 +24,9 @@ export default function HomePage() {
 
       {/* 01. Hero Section: Kháng Lực Trên Thảm */}
       <HeroSection />
+
+      {/* Album Hình Ảnh Hoạt Động & Lớp Học Thực Tế */}
+      <GalleryAlbumSection />
 
       {/* 02. Bộ Dụng Cụ Kháng Lực Trên Thảm (Thảm tập chuyên dụng, Dây Booty-Bands, Tạ tay 1-2kg) */}
       <MatEquipmentSection />

@@ -7,6 +7,7 @@ import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "VỀ KHÁNG LỰC THẢM", href: "#about-mat" },
+  { label: "THƯ VIỆN ẢNH", href: "#album" },
   { label: "DỤNG CỤ TẬP", href: "#equipment" },
   { label: "CÁC GÓI TẬP", href: "#pricing" },
   { label: "HIỆU QUẢ VÓC DÁNG", href: "#transformation" },
