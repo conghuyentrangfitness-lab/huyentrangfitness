@@ -58,15 +58,15 @@ function buildHtmlTemplate(data: ConsultationPayload, timestamp: string) {
               <td class="value"><a href="tel:${data.phone}" style="color: #24211D; font-weight: 700; text-decoration: none;">${data.phone}</a></td>
             </tr>
             <tr>
-              <td class="label">Email liên hệ:</td>
+              <td class="label">Email học viên:</td>
               <td class="value">${data.email ? `<a href="mailto:${data.email}">${data.email}</a>` : "<em>Chưa cung cấp</em>"}</td>
             </tr>
             <tr>
-              <td class="label">Khu vực sinh sống:</td>
+              <td class="label">Khu vực đang sinh sống:</td>
               <td class="value">${data.location}</td>
             </tr>
             <tr>
-              <td class="label">Gói tập quan tâm:</td>
+              <td class="label">Gói học bạn quan tâm:</td>
               <td class="value highlight">${data.packageName}</td>
             </tr>
             <tr>
@@ -74,7 +74,7 @@ function buildHtmlTemplate(data: ConsultationPayload, timestamp: string) {
               <td class="value">${data.notes ? data.notes.replace(/\n/g, "<br>") : "<em>Không có ghi chú thêm</em>"}</td>
             </tr>
             <tr>
-              <td class="label">Thời gian đăng ký:</td>
+              <td class="label">Thời gian gửi đăng ký:</td>
               <td class="value" style="font-size: 12px; color: #73695E;">${timestamp}</td>
             </tr>
           </table>
@@ -84,8 +84,8 @@ function buildHtmlTemplate(data: ConsultationPayload, timestamp: string) {
           </div>
         </div>
         <div class="footer">
-          Email này được gửi tự động từ biểu mẫu đăng ký trên website FITNESS x FIT CLUB.<br>
-          Địa chỉ: Chung Cư Green Pearl (378 Minh Khai, Hai Bà Trưng, Hà Nội)
+          Email này được gửi tự động từ biểu mẫu đăng ký trên website chính thức: <a href="https://www.conghuyentrangfitness.com" style="color: #C58F78; text-decoration: none; font-weight: 600;">www.conghuyentrangfitness.com</a><br>
+          FITNESS x FIT CLUB • Chung Cư Green Pearl (378 Minh Khai, Hai Bà Trưng, Hà Nội) • Hotline: 0913.234.323
         </div>
       </div>
     </body>
