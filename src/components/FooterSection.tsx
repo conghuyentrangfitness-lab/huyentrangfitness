@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Heart, Flower2, ShieldCheck } from "lucide-react";
 import PolicyModal, { PolicyTab } from "./PolicyModal";
+import { SOCIAL_CHANNELS, TikTokIcon, FacebookIcon, FanpageIcon, InstagramIcon } from "./SocialLinks";
 
 export default function FooterSection() {
   const [policyModalOpen, setPolicyModalOpen] = useState(false);
@@ -46,6 +47,26 @@ export default function FooterSection() {
             <p className="font-sans-clean text-xs sm:text-sm text-[#A89F91] mt-2 font-light max-w-md">
               Hệ thống rèn luyện vóc dáng chuyên biệt cho phái đẹp: tăng cơ, giảm mỡ, độ body, thắt eo con kiến, nâng đỉnh mông quả đào.
             </p>
+
+            {/* Quick Social Badges Row */}
+            <div className="flex flex-wrap items-center gap-2.5 mt-5">
+              {SOCIAL_CHANNELS.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Mở trang ${item.name}`}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-[#D4A373] text-white hover:text-[#1C1A17] border border-white/15 hover:border-[#D4A373] text-xs font-medium transition-all duration-300 group shadow-2xs"
+                >
+                  {item.id === "tiktok" && <TikTokIcon className="w-3.5 h-3.5 text-[#FAF7F2] group-hover:text-[#1C1A17]" />}
+                  {item.id === "facebook" && <FacebookIcon className="w-3.5 h-3.5 text-[#1877F2] group-hover:text-[#1C1A17]" />}
+                  {item.id === "fanpage" && <FanpageIcon className="w-3.5 h-3.5 text-[#0866FF] group-hover:text-[#1C1A17]" />}
+                  {item.id === "instagram" && <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C] group-hover:text-[#1C1A17]" />}
+                  <span>{item.name}</span>
+                </a>
+              ))}
+            </div>
           </div>
 
           <button
@@ -100,6 +121,11 @@ export default function FooterSection() {
             </span>
             <ul className="space-y-2.5 text-[#C4B9AA]">
               <li>
+                <a href="#album" className="hover:text-white transition-colors font-semibold text-[#D4A373]">
+                  Thư Viện Ảnh Lớp Học (24+ Ảnh)
+                </a>
+              </li>
+              <li>
                 <a href="#equipment" className="hover:text-white transition-colors">
                   Dụng Cụ Thảm & Dây Band
                 </a>
@@ -115,8 +141,8 @@ export default function FooterSection() {
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-white transition-colors">
-                  Đăng Ký 3 Buổi Học Thử Miễn Phí (Liên Hệ)
+                <a href="#consultation-form" className="hover:text-white transition-colors">
+                  Đăng Ký 3 Buổi Học Thử Miễn Phí
                 </a>
               </li>
             </ul>
@@ -125,51 +151,90 @@ export default function FooterSection() {
           {/* Col 3: Mạng xã hội */}
           <div>
             <span className="text-[#D4A373] uppercase font-semibold tracking-wider block mb-4 whitespace-nowrap">
-              // KẾT NỐI VỚI FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>
+              // KẾT NỐI MẠNG XÃ HỘI
             </span>
-            <ul className="space-y-2.5 text-[#C4B9AA]">
+            <ul className="space-y-3.5 text-[#C4B9AA]">
+              {/* TikTok */}
               <li>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.tiktok.com/@conghuyentrangfitness?_r=1&_t=ZS-9A3VM3SucaO"
                   target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10"
                 >
-                  <span>FACEBOOK FANPAGE</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-black text-white flex items-center justify-center shrink-0 border border-white/20">
+                      <TikTokIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block text-xs">TIKTOK</span>
+                      <span className="text-[10px] text-[#A89F91]">@conghuyentrangfitness</span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#D4A373] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
+
+              {/* Facebook Cá Nhân */}
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.facebook.com/Amycog"
                   target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10"
                 >
-                  <span>INSTAGRAM</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#1877F2] text-white flex items-center justify-center shrink-0">
+                      <FacebookIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block text-xs">FACEBOOK CÁ NHÂN</span>
+                      <span className="text-[10px] text-[#A89F91]">Amy Cương (Huyền Trang)</span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#D4A373] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
+
+              {/* Facebook Fanpage */}
               <li>
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.facebook.com/profile.php?id=61594530699329&mibextid=wwXIfr&rdid=HtLNd9BdYmxqfA96&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AjUTeADVy%2F%3Fmibextid%3DwwXIfr#"
                   target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10"
                 >
-                  <span>TIKTOK STUDIO</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#0866FF] text-white flex items-center justify-center shrink-0">
+                      <FanpageIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block text-xs">FANPAGE FIT CLUB</span>
+                      <span className="text-[10px] text-[#A89F91]">Fit Club - Tăng Cơ Giảm Mỡ</span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#D4A373] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
+
+              {/* Instagram */}
               <li>
                 <a
-                  href="https://youtube.com"
+                  href="https://www.instagram.com/huyentrang0807?stkn=MW9oMW51bHh4ZnFubg%3D%3D&utm_source=qr"
                   target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4A373] transition-colors flex items-center justify-between group p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10"
                 >
-                  <span>YOUTUBE (BÀI TẬP TẠI NHÀ)</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-white flex items-center justify-center shrink-0">
+                      <InstagramIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block text-xs">INSTAGRAM</span>
+                      <span className="text-[10px] text-[#A89F91]">@huyentrang0807</span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#D4A373] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
             </ul>
