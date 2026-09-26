@@ -142,12 +142,6 @@ export default function CourseConsultationForm({
     setIsSubmitted(false);
   };
 
-  const mailtoFallbackUrl = `mailto:conghuyentrangfitness@gmail.com?subject=${encodeURIComponent(
-    `[ĐĂNG KÝ HỌC] ${fullName || "Học viên mới"} - ${phone || ""}`
-  )}&body=${encodeURIComponent(
-    `Xin chào Huấn Luyện Viên Công Huyền Trang,\n\nTôi muốn đăng ký tư vấn tập luyện tại FITNESS x FIT CLUB:\n- Họ và tên: ${fullName}\n- Số điện thoại: ${phone}\n- Email: ${email || "Chưa cung cấp"}\n- Khu vực: ${location}\n- Gói tập quan tâm: ${currentPkgLabel}\n- Ghi chú / Mục tiêu: ${notes || "Không có"}\n\nXin cảm ơn!`
-  )}`;
-
   return (
     <div
       id="consultation-form"
@@ -328,18 +322,9 @@ export default function CourseConsultationForm({
             {/* Right: The Actual Interactive Form */}
             <div className="lg:col-span-7 bg-[#FAF7F2]/80 backdrop-blur-xs rounded-2xl p-6 sm:p-9 border border-[#D4A373]/30">
               {submitError && (
-                <div className="mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-sans-clean flex flex-col gap-2">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
-                    <span>{submitError}</span>
-                  </div>
-                  <a
-                    href={mailtoFallbackUrl}
-                    className="self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium text-[11px] transition-colors"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Gửi ngay bằng ứng dụng Email cá nhân</span>
-                  </a>
+                <div className="mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-sans-clean flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
+                  <span>{submitError}</span>
                 </div>
               )}
 
