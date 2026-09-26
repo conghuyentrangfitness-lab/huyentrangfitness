@@ -1,6 +1,5 @@
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
-import FloatingSocialWidget from "@/components/FloatingSocialWidget";
 import HeroSection from "@/components/HeroSection";
 import GalleryAlbumSection from "@/components/GalleryAlbumSection";
 import MatEquipmentSection from "@/components/MatEquipmentSection";
@@ -22,9 +21,6 @@ export default function HomePage() {
 
       {/* Translucent Luxury Navbar */}
       <Navbar />
-
-      {/* Floating Quick Social & Contact Widget */}
-      <FloatingSocialWidget />
 
       {/* 01. Hero Section: Kháng Lực Trên Thảm */}
       <HeroSection />

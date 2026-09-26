@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ChevronDown, Sparkles, Heart, ShieldCheck, Zap } from "lucide-react";
+import { ChevronDown, Sparkles, Heart, ShieldCheck, Zap, Phone } from "lucide-react";
+import { TikTokIcon, FacebookIcon, FanpageIcon, InstagramIcon } from "./SocialLinks";
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -109,6 +110,94 @@ export default function HeroSection() {
           <span className="font-medium">
             <strong className="text-[#24211D] font-bold">Hoàn Tiền 100% Nếu Không Đạt Kết Quả</strong>
           </span>
+        </div>
+
+        {/* 📲 KÊNH LIÊN HỆ & MẠNG XÃ HỘI CHÍNH THỨC */}
+        <div className="mt-5 pt-4 border-t border-[#D4A373]/30 w-full max-w-2xl">
+          <div className="flex items-center gap-2 text-[11px] font-bold text-[#C58F78] uppercase tracking-wider mb-2.5">
+            <span className="w-2 h-2 rounded-full bg-[#C58F78] animate-pulse" />
+            <span>KÊNH LIÊN HỆ & MẠNG XÃ HỘI CHÍNH THỨC:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {/* Hotline */}
+            <a
+              href="tel:0913234323"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#24211D] border border-[#D4A373]/35 shadow-2xs hover:border-[#C58F78] hover:shadow-xs transition-all group"
+            >
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#C58F78] to-[#D4A373] text-white flex items-center justify-center shrink-0">
+                <Phone className="w-3 h-3 animate-pulse" />
+              </div>
+              <div className="leading-tight text-left">
+                <span className="block text-[9px] text-[#877F75] font-semibold">HOTLINE</span>
+                <span className="block text-xs font-bold text-[#24211D] group-hover:text-[#C58F78] transition-colors">0913.234.323</span>
+              </div>
+            </a>
+
+            {/* TikTok */}
+            <a
+              href="https://www.tiktok.com/@conghuyentrangfitness?_r=1&_t=ZS-9A3VM3SucaO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#24211D] border border-[#D4A373]/35 shadow-2xs hover:border-black hover:bg-black hover:text-white transition-all group"
+            >
+              <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center shrink-0">
+                <TikTokIcon className="w-3.5 h-3.5" />
+              </div>
+              <div className="leading-tight text-left">
+                <span className="block text-[9px] text-[#877F75] group-hover:text-white/80 font-semibold">TIKTOK</span>
+                <span className="block text-xs font-bold">@conghuyentrangfitness</span>
+              </div>
+            </a>
+
+            {/* Facebook Cá Nhân */}
+            <a
+              href="https://www.facebook.com/Amycog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#24211D] border border-[#D4A373]/35 shadow-2xs hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all group"
+            >
+              <div className="w-6 h-6 rounded-full bg-[#1877F2] text-white flex items-center justify-center shrink-0">
+                <FacebookIcon className="w-3.5 h-3.5" />
+              </div>
+              <div className="leading-tight text-left">
+                <span className="block text-[9px] text-[#877F75] group-hover:text-white/80 font-semibold">FACEBOOK</span>
+                <span className="block text-xs font-bold">Amy Cương</span>
+              </div>
+            </a>
+
+            {/* Fanpage */}
+            <a
+              href="https://www.facebook.com/profile.php?id=61594530699329&mibextid=wwXIfr&rdid=HtLNd9BdYmxqfA96&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AjUTeADVy%2F%3Fmibextid%3DwwXIfr#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#24211D] border border-[#D4A373]/35 shadow-2xs hover:border-[#0866FF] hover:bg-[#0866FF] hover:text-white transition-all group"
+            >
+              <div className="w-6 h-6 rounded-full bg-[#0866FF] text-white flex items-center justify-center shrink-0">
+                <FanpageIcon className="w-3.5 h-3.5" />
+              </div>
+              <div className="leading-tight text-left">
+                <span className="block text-[9px] text-[#877F75] group-hover:text-white/80 font-semibold">FANPAGE</span>
+                <span className="block text-xs font-bold">Fit Club</span>
+              </div>
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/huyentrang0807?stkn=MW9oMW51bHh4ZnFubg%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#24211D] border border-[#D4A373]/35 shadow-2xs hover:border-transparent hover:bg-gradient-to-tr hover:from-[#FD1D1D] hover:via-[#E1306C] hover:to-[#833AB4] hover:text-white transition-all group"
+            >
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-white flex items-center justify-center shrink-0">
+                <InstagramIcon className="w-3.5 h-3.5" />
+              </div>
+              <div className="leading-tight text-left">
+                <span className="block text-[9px] text-[#877F75] group-hover:text-white/80 font-semibold">INSTAGRAM</span>
+                <span className="block text-xs font-bold">@huyentrang0807</span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
 
