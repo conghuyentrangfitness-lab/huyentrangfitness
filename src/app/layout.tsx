@@ -11,6 +11,7 @@ const googleSans = Google_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://conghuyentrangfitness.com"),
   title: "FITNESS x FIT CLUB // Tăng Cơ — Giảm Mỡ — Độ Body",
   description:
     "Hệ thống rèn luyện vóc dáng chuyên biệt cho phái đẹp: tăng cơ, giảm mỡ, độ body, rãnh bụng số 11, nâng mông quả đào, 100% êm ái bảo vệ khớp gối.",
@@ -24,10 +25,14 @@ export const metadata: Metadata = {
     "Nâng mông quả đào không to đùi",
     "Các gói tập",
   ],
+  alternates: {
+    canonical: "https://conghuyentrangfitness.com",
+  },
   openGraph: {
     title: "FITNESS x FIT CLUB",
     description:
       "Tăng cơ — Giảm mỡ — Độ body. Điêu khắc đường cong đồng hồ cát cho phái đẹp.",
+    url: "https://conghuyentrangfitness.com",
     siteName: "FITNESS x FIT CLUB",
     locale: "vi_VN",
     type: "website",

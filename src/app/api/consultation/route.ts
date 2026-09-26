@@ -169,7 +169,7 @@ export async function POST(req: Request) {
     const officialSiteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       process.env.SITE_URL ||
-      (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://huyentrangfitness.com");
+      (detectedOrigin && !detectedOrigin.includes("localhost") ? detectedOrigin : "https://conghuyentrangfitness.com");
 
     // Fallback: Send via FormSubmit service directly to RECIPIENT_EMAIL
     try {
