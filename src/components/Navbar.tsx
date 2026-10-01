@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -17,25 +17,80 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrollYRef = useRef<number>(0);
+  const targetAnchorRef = useRef<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      if (!mobileMenuOpen) {
+        setScrolled(window.scrollY > 40);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
+  // Khóa cứng thanh cuộn của trang web phía sau khi mở menu 3 gạch trên mobile (tương thích 100% iOS Safari & Android)
   useEffect(() => {
     if (mobileMenuOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.overscrollBehavior = "none";
     } else {
+      const top = document.body.style.top;
+      const targetAnchor = targetAnchorRef.current;
+      targetAnchorRef.current = null;
+
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.overscrollBehavior = "";
+
+      if (targetAnchor) {
+        const targetId = targetAnchor.replace("#", "");
+        requestAnimationFrame(() => {
+          if (targetId && targetId !== "top") {
+            const el = document.getElementById(targetId);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth" });
+              return;
+            }
+          }
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      } else if (top) {
+        const y = parseInt(top, 10) * -1;
+        window.scrollTo(0, y);
+      }
     }
+
     return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.overscrollBehavior = "";
     };
   }, [mobileMenuOpen]);
+
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    targetAnchorRef.current = href;
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -125,14 +180,22 @@ export default function Navbar() {
 
       {/* Full-screen Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#FAF7F2] z-40 lg:hidden flex flex-col justify-between px-6 sm:px-8 py-20 overflow-y-auto transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-[#FAF7F2] z-40 lg:hidden flex flex-col justify-between px-6 sm:px-8 py-20 overflow-y-auto overscroll-contain touch-pan-y transition-all duration-500 ease-in-out ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-8"
         }`}
+        style={{
+          overscrollBehavior: "contain",
+          WebkitOverflowScrolling: "touch",
+        }}
       >
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-2.5">
+          <a
+            href="#"
+            onClick={(e) => handleMobileNavClick(e, "#top")}
+            className="flex items-center gap-2.5 cursor-pointer"
+          >
             <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D4A373]/35 shadow-xs shrink-0 bg-white">
               <Image
                 src="/images/logo.jpg"
@@ -145,15 +208,15 @@ export default function Navbar() {
             <span className="text-base font-bold text-[#24211D] tracking-tight whitespace-nowrap">
               FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>
             </span>
-          </div>
+          </a>
 
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map((item, index) => (
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-xl sm:text-2xl text-[#24211D] hover:text-[#C58F78] transition-colors font-semibold flex items-baseline gap-3"
+                onClick={(e) => handleMobileNavClick(e, item.href)}
+                className="text-xl sm:text-2xl text-[#24211D] hover:text-[#C58F78] transition-colors font-semibold flex items-baseline gap-3 cursor-pointer"
               >
                 <span className="text-xs text-[#877F75] font-normal">0{index + 1}</span>
                 {item.label}
@@ -198,8 +261,8 @@ export default function Navbar() {
         <div className="flex flex-col gap-3 pt-6 border-t border-[#D4A373]/20 mt-6">
           <a
             href="#consultation-form"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-center gap-2 w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-normal sm:tracking-wider text-[11px] min-[390px]:text-xs shadow-md text-center"
+            onClick={(e) => handleMobileNavClick(e, "#consultation-form")}
+            className="flex items-center justify-center gap-2 w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-normal sm:tracking-wider text-[11px] min-[390px]:text-xs shadow-md text-center cursor-pointer"
           >
             <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />

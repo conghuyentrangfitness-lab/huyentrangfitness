@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { X, Shield, FileText, RefreshCw, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { X, Shield, FileText, RefreshCw, CheckCircle2 } from "lucide-react";
 
 export type PolicyTab = "privacy" | "terms" | "refund";
 
@@ -18,18 +18,49 @@ export default function PolicyModal({
   onClose,
   onTabChange,
 }: PolicyModalProps) {
+  const scrollYRef = useRef<number>(0);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+
     if (isOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.overscrollBehavior = "none";
       window.addEventListener("keydown", handleKeyDown);
     } else {
+      const top = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.overscrollBehavior = "";
+      if (top) {
+        const y = parseInt(top, 10) * -1;
+        window.scrollTo(0, y);
+      }
     }
+
     return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.overscrollBehavior = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
