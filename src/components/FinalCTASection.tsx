@@ -41,10 +41,10 @@ export default function FinalCTASection() {
         {/* The CTA Button */}
         <a
           href="tel:0913234323"
-          className="group inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-sans-clean font-medium text-sm sm:text-base tracking-wide shadow-[0_8px_30px_rgba(197,143,120,0.45)] hover:shadow-[0_12px_40px_rgba(197,143,120,0.6)] hover:scale-[1.03] transition-all duration-300 text-center"
+          className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-3.5 sm:px-12 py-3.5 sm:py-5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-sans-clean font-bold sm:font-medium text-[11px] min-[390px]:text-xs sm:text-base tracking-normal sm:tracking-wide shadow-[0_8px_30px_rgba(197,143,120,0.45)] hover:shadow-[0_12px_40px_rgba(197,143,120,0.6)] hover:scale-[1.03] transition-all duration-300 text-center max-w-full"
         >
-          <span>ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
+          <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
+          <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1.5 transition-transform duration-300" />
         </a>
 
         {/* 🛡️ Cam Kết Hoàn Tiền 100% */}

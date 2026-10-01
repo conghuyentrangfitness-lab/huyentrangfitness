@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { SOCIAL_CHANNELS, TikTokIcon, FacebookIcon, FanpageIcon, InstagramIcon } from "./SocialLinks";
 
 const NAV_LINKS = [
@@ -199,10 +199,10 @@ export default function Navbar() {
           <a
             href="#consultation-form"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-center gap-3 w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-wider text-xs shadow-md text-center"
+            className="flex items-center justify-center gap-2 w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-normal sm:tracking-wider text-[11px] min-[390px]:text-xs shadow-md text-center"
           >
-            <span>ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
           </a>
           <div className="text-center text-xs text-[#877F75] whitespace-nowrap">
             FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>

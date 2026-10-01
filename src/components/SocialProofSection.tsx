@@ -6,7 +6,7 @@ import { Quote, Heart, Sparkles, Star } from "lucide-react";
 export default function SocialProofSection() {
   return (
     <section className="relative w-full py-24 sm:py-36 bg-[#F3ECE2] border-b border-[#D4A373]/20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-12">
         {/* Section Identifier */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 text-xs font-sans-clean text-[#C58F78] font-medium uppercase tracking-wider mb-6">
           <Sparkles className="w-3.5 h-3.5" />
@@ -21,7 +21,7 @@ export default function SocialProofSection() {
         </div>
 
         {/* Editorial Member Story Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-white rounded-3xl border border-[#D4A373]/25 p-8 sm:p-12 shadow-[0_15px_45px_rgba(212,163,115,0.1)]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-white rounded-3xl border border-[#D4A373]/25 p-5 sm:p-8 lg:p-12 shadow-[0_15px_45px_rgba(212,163,115,0.1)]">
           {/* Left: Beautiful Portrait Image */}
           <div
             className="lg:col-span-5 relative h-[400px] sm:h-[480px] rounded-2xl overflow-hidden shadow-sm"
@@ -100,10 +100,10 @@ export default function SocialProofSection() {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[#D4A373]/20 flex items-center justify-between text-xs font-sans-clean text-[#877F75]">
+            <div className="mt-8 pt-6 border-t border-[#D4A373]/20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-y-2 gap-x-2 text-[10px] min-[360px]:text-[11px] sm:text-xs font-sans-clean text-[#877F75]">
               <span className="whitespace-nowrap">HUẤN LUYỆN BỞI FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span></span>
-              <span className="text-[#C58F78] font-medium flex items-center gap-1">
-                <Heart className="w-3.5 h-3.5 fill-[#C58F78]" /> LAN TỎA YÊU THƯƠNG
+              <span className="text-[#C58F78] font-medium flex items-center gap-1 whitespace-nowrap">
+                <Heart className="w-3 h-3 min-[360px]:w-3.5 min-[360px]:h-3.5 fill-[#C58F78] shrink-0" /> LAN TỎA YÊU THƯƠNG
               </span>
             </div>
           </div>

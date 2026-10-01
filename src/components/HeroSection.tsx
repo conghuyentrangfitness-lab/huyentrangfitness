@@ -87,15 +87,15 @@ export default function HeroSection() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
             href="#consultation-form"
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white text-sm font-bold tracking-wide shadow-[0_6px_25px_rgba(197,143,120,0.4)] hover:shadow-[0_8px_30px_rgba(197,143,120,0.55)] transition-all duration-300 hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-2 sm:gap-2.5 px-3.5 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-normal sm:tracking-wide shadow-[0_6px_25px_rgba(197,143,120,0.4)] hover:shadow-[0_8px_30px_rgba(197,143,120,0.55)] transition-all duration-300 hover:scale-[1.02] max-w-full"
           >
-            <span>ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
-            <Sparkles className="w-4 h-4" />
+            <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
           </a>
 
           <a
             href="#pricing"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/80 backdrop-blur-sm border border-[#D4A373]/35 text-[#24211D] text-sm font-semibold hover:border-[#C58F78] hover:text-[#C58F78] transition-all"
+            className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full bg-white/80 backdrop-blur-sm border border-[#D4A373]/35 text-[#24211D] text-xs sm:text-sm font-semibold hover:border-[#C58F78] hover:text-[#C58F78] transition-all whitespace-nowrap"
           >
             <span>XEM CÁC GÓI TẬP ↓</span>
           </a>
