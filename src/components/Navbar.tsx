@@ -262,10 +262,15 @@ export default function Navbar() {
           <a
             href="#consultation-form"
             onClick={(e) => handleMobileNavClick(e, "#consultation-form")}
-            className="flex items-center justify-center gap-2 w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-normal sm:tracking-wider text-[11px] min-[390px]:text-xs shadow-md text-center cursor-pointer"
+            className="flex items-center justify-center gap-2.5 w-full py-2.5 px-4 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-bold tracking-wide text-xs shadow-md text-center cursor-pointer"
           >
-            <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
-            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            <span className="flex flex-col items-center justify-center leading-tight">
+              <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
+              <span className="whitespace-nowrap text-[11px] font-semibold opacity-95">
+                ( LIÊN HỆ NGAY )
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 shrink-0" />
           </a>
           <div className="text-center text-xs text-[#877F75] whitespace-nowrap">
             FITNESS x&nbsp;<span className="whitespace-nowrap">FIT&nbsp;CLUB</span>

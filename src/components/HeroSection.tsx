@@ -87,10 +87,15 @@ export default function HeroSection() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
             href="#consultation-form"
-            className="inline-flex items-center justify-center gap-2 sm:gap-2.5 px-3.5 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-normal sm:tracking-wide shadow-[0_6px_25px_rgba(197,143,120,0.4)] hover:shadow-[0_8px_30px_rgba(197,143,120,0.55)] transition-all duration-300 hover:scale-[1.02] max-w-full"
+            className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white text-xs sm:text-sm font-bold tracking-wide shadow-[0_6px_25px_rgba(197,143,120,0.4)] hover:shadow-[0_8px_30px_rgba(197,143,120,0.55)] transition-all duration-300 hover:scale-[1.02] max-w-full text-center"
           >
-            <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            <span className="flex flex-col sm:inline-flex sm:flex-row items-center justify-center leading-tight">
+              <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
+              <span className="whitespace-nowrap sm:ml-1.5 text-[11px] sm:text-xs font-semibold sm:font-bold opacity-95">
+                ( LIÊN HỆ NGAY )
+              </span>
+            </span>
+            <Sparkles className="w-4 h-4 shrink-0" />
           </a>
 
           <a

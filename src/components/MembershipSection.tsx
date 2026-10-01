@@ -342,10 +342,15 @@ export default function MembershipSection() {
                 e.preventDefault();
                 handleSelectPackageAndScroll("trial-3-sessions");
               }}
-              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-3.5 sm:px-8 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-sans-clean font-bold text-[11px] min-[390px]:text-xs sm:text-sm tracking-normal sm:tracking-wider shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer max-w-full"
+              className="inline-flex items-center justify-center gap-2.5 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-4 rounded-full bg-gradient-to-r from-[#C58F78] to-[#D4A373] text-white font-sans-clean font-bold text-xs sm:text-sm tracking-wide sm:tracking-wider shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer max-w-full text-center"
             >
-              <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ ( LIÊN HỆ )</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span className="flex flex-col sm:inline-flex sm:flex-row items-center justify-center leading-tight">
+                <span className="whitespace-nowrap">ĐĂNG KÝ 3 BUỔI HỌC THỬ MIỄN PHÍ</span>
+                <span className="whitespace-nowrap sm:ml-1.5 text-[11px] sm:text-xs font-semibold sm:font-bold opacity-95">
+                  ( LIÊN HỆ NGAY )
+                </span>
+              </span>
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </a>
           </div>
         </div>
